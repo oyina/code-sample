@@ -1,0 +1,392 @@
+.menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 0;
+  box-sizing: border-box;
+  height: 100vh;
+  overflow: hidden;
+  pointer-events: none;
+  //background-attachment: fixed;
+  background: radial-gradient($brand-secondary-cream,rgba($brand-secondary-cream, 0.0));
+  background-size: cover;
+  background-position: center center;
+  //transform: translateY(-100%);
+  opacity: 0;
+//  transition: height $transition-time $ease-soft, max-height $transition-time $ease-soft, transform $transition-time $ease-soft, opacity $transition-time * 4 $ease-soft $transition-time, z-index $transition-time * 18 $ease-soft, background $ease-soft $transition-time * 10;
+  transition: z-index $transition-time * 30 $ease-soft, opacity $transition-time * 6 $ease-soft;
+
+  @include mq-lt($bp-small){
+    overflow-y: scroll;
+  }
+
+  &__header {
+    position: relative;
+    background: none;
+    z-index: 99;
+
+    .social-icons {
+      color: $brand-primary-dark!important;
+    }
+    span {
+      color: $brand-primary-dark!important;
+    }
+  }
+  &::before {
+    content: ' ';
+    background: $ui-black;
+    transition: all $transition-time * 2 $ease-soft, opacity $transition-time * 4 $ease-soft;
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+
+
+  }
+  &.menu-open {
+    //transform: translateY(0);
+    pointer-events: all;
+    opacity: 1;
+    z-index: 99;
+    background: radial-gradient($brand-secondary-cream,rgba($brand-secondary-cream, 1));
+    transition: z-index $transition-time * 0 $ease-soft, opacity $transition-time * 6 $ease-soft;
+//    transition: z-index $transition-time * 2 $ease-soft, background $ease-soft $transition-time * 8, height $transition-time * 2 $ease-soft, max-height $transition-time * 2 $ease-soft, transform $transition-time * 2 $ease-soft, opacity $transition-time * 4 $ease-soft;
+
+    .menu-legacy {
+    /*  &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, .8);
+      }
+      &:hover {
+        //whole card
+        transform: none;
+        z-index: 1;
+
+        //All content
+        .card__content {
+          transform: none;
+          //large number
+          &::after {
+            transform: none;
+          }
+        }
+
+        //border line
+        .card__title {
+          transform: none;
+          &::after {
+            transform: none;
+          }
+        }
+
+        //button
+        .card__description {
+          opacity: 0;
+          transform: none;
+        }
+      }*/
+    }
+
+    .menu-product {
+
+
+    }
+
+    .menu-recipes {
+    /*  &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, .7);
+      }
+      &:hover {
+        //whole card
+        transform: none;
+        z-index: 1;
+
+        //All content
+        .card__content {
+          transform: none;
+          //large number
+          &::after {
+            transform: none;
+          }
+        }
+
+        //border line
+        .card__title {
+          transform: none;
+          &::after {
+            transform: none;
+          }
+        }
+
+        //button
+        .card__description {
+          opacity: 0;
+          transform: none;
+        }
+      }*/
+
+    }
+
+    .menu-finder {
+
+
+    }
+  }
+
+  &.menu-overlay {
+    &::before {
+      opacity: .7;
+      z-index: 100;
+
+
+    }
+  }
+
+  &.menu-is-scrollable {
+    overflow-y: scroll;
+  }
+
+  &__inner {
+    @include gridContainer;
+
+    position: relative;
+
+    @include mq(pxToEm(730)){
+      max-width: calc(100% - 5.625rem);
+    }
+  }
+
+  &__left {
+    @include colspan(4,12,$vr);
+
+    @include mq-lt(pxToEm(730)){
+      display: none;
+    }
+
+  }
+  &__right {
+    @include colspan(8,12,$vr);
+
+    @include mq-lt(pxToEm(730)){
+      @include colspan(12,12,$vr);
+    }
+
+
+  }
+
+  &__half {
+    @include gridContainer;
+    margin-bottom: $vr;
+  }
+
+  .card {
+    height: 100%;
+    border-left: 5px solid $brand-primary-burgundy;
+    transition: all $transition-time *2 $ease-soft;
+    box-shadow: 0 10px 17px -3px rgba(150, 150, 150, 0.3);
+
+
+
+
+    &::after {
+      background: linear-gradient(0deg, #100F0A, #424242);
+      opacity: .5;
+      z-index: 0;
+      }
+    .card__image {
+      &::before {
+        padding-top: 155.32%;
+      }
+    }
+    .card__content {
+      z-index: 6;
+      transition: all $transition-time * 2 $ease-soft;
+      padding-right: 0;
+      pointer-events: none;
+
+        &::after{
+          font-family: $font-headline;
+          font-size: pxToRem(230);
+          display: block;
+          position: absolute;
+          left: pxToRem(-7);
+          bottom: 0;
+          opacity: .3;
+          z-index: 5;
+          color: $brand-secondary-brown;
+          line-height: 80%;
+          transition: all $transition-time * 4 $ease-soft $transition-time * 1.5;
+        }
+      }
+
+
+    .card__title {
+      @include h3;
+      color: $brand-primary-tan;
+      position: relative;
+      z-index: 7;
+      transition: all $transition-time * 2 $ease-soft;
+
+      &::after {
+        content: ' ';
+        display: block;
+        width: 100%;
+        //border-bottom: 1px solid $brand-primary-tan;
+        height: 1px;
+        background: $brand-primary-tan;
+        opacity: .5;
+        margin-top: $vr;
+        transform: translateX(0);
+        transition: all $transition-time * 2 $ease-soft;
+      }
+
+    }
+
+    .card__title--short {
+      @include label-5;
+      color: $ui-white;
+    }
+
+    .card__description {
+
+      .button {
+        max-width: 170px;
+      }
+      display: block;
+      opacity: 0;
+      transform: translateY(0%);
+      position: absolute;
+      z-index: 8;
+      width: 100%;
+      transition: transform $transition-time * 2 $ease-soft $transition-time * 1.5, opacity $transition-time * 2 $ease-soft $transition-time;
+      transform: translate($vr,$vr);
+    }
+
+    /* Hover States */
+    &:hover {
+      //whole card
+      transform: scale(1.025);
+      z-index: 101;
+      &::after {
+
+      }
+
+      //All content
+      .card__content {
+        transform: translate(-$vr * 2,-$vr * 2);
+        //large number
+        &::after {
+          transform: scale(1.1);
+        }
+      }
+
+      //border line
+      .card__title {
+        transform: scale(1.1) translateX($vr * 2);
+        &::after {
+          transform: translateX(10%);
+        }
+      }
+
+      //button
+      .card__description {
+        opacity: 1;
+        transform: translate(0,0);
+      }
+    }
+  }
+
+  .card__half {
+    width: calc(50% - .5625rem);
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+
+    @include mq-lt($bp-small){
+      width: calc(100% - .5625rem);
+      margin-left: 0;
+      margin-bottom: $vr;
+    }
+  }
+}
+
+.menu-legacy {
+
+ .card__image::before {
+   padding-top: 250%!important;
+ }
+  .card__content {
+    &::after{
+      content: '01';
+    }
+  }
+}
+
+.menu-product {
+
+  .card__image::before {
+      padding-top: 38.29%;
+  }
+  .card__content   {
+    &::after{
+      content: '02';
+    }
+  }
+}
+
+.menu-recipes {
+
+  .card__content   {
+    &::after{
+      content: '03';
+    }
+  }
+}
+
+.menu-finder {
+
+  .card__content   {
+    &::after{
+      content: '04';
+    }
+  }
+}
+
+.card-inactive {
+  -webkit-filter: grayscale(70%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(70%);
+    pointer-events: none;
+    @include mq($bp-large){
+      pointer-events: auto;
+    }
+    .card__content {
+      opacity: .5;
+    }
+}
+
+.homepage {
+  .menu {
+    transition: z-index $transition-time * 0 $ease-soft, opacity $transition-time * 6 $ease-soft;
+    &.open-menu {
+      transition: z-index $transition-time * 10 $ease-soft, opacity $transition-time * 6 $ease-soft;
+    }
+  }
+}
